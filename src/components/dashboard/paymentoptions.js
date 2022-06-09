@@ -1,0 +1,1 @@
+export const paymentOptions = ['All', 'Subscription', 'Lumpsum', 'EMI'];

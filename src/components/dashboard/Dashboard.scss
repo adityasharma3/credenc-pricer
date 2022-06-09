@@ -1,0 +1,38 @@
+.dashboard {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.payment-options {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  gap: 5rem;
+  margin: 1rem 4rem;
+}
+
+.payment-option {
+  p {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    background-color: rgba(244, 244, 244, 1);
+    color: rgba(44, 44, 44, 0.5);
+    cursor: pointer;
+  }
+
+  :hover {
+    color: rgba(44, 44, 44, 2);
+  }
+}
+
+.new-pricing {
+  cursor: pointer;
+  margin: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(105, 105, 105, 1);
+  color: rgba(255, 255, 255, 1);
+  height: min-content;
+  border-radius: 4px;
+}
