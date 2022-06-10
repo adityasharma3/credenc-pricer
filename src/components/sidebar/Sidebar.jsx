@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import "./Sidebar.scss";
-import { Armchair, CaretRight } from "phosphor-react";
-import { productList } from "../../data";
-
 import supabase from "../../config/supabase-client";
 import SidebarModal from "./SidebarModal";
+
+import { useDispatch } from "react-redux";
+
+import "./Sidebar.scss";
+import { productSliceActions } from "../../store/productSlice";
+import { CaretRight } from "phosphor-react";
 
 const Sidebar = () => {
   const [products, setProducts] = useState([]);
   const [clickedProduct, setClickedProduct] = useState("Sofa");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async () => {
@@ -35,8 +39,8 @@ const Sidebar = () => {
               key={b.id}
               onClick={(e) => {
                 e.stopPropagation();
-                // console.log(b.productName);
                 setClickedProduct(b.productName);
+                dispatch(productSliceActions.newProduct(b.productName));
               }}
             >
               <p>{b.productName}</p>
