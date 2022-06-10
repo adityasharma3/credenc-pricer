@@ -10,14 +10,13 @@ import { CaretRight } from "phosphor-react";
 
 const Sidebar = () => {
   const [products, setProducts] = useState([]);
-  const [clickedProduct, setClickedProduct] = useState("Sofa");
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async () => {
-      const { data, error } = await supabase.from("products-list").select("*");
+      const { data, error } = await supabase.from("productsList").select("*");
       setProducts(data);
 
       if (error) {
@@ -39,8 +38,11 @@ const Sidebar = () => {
               key={b.id}
               onClick={(e) => {
                 e.stopPropagation();
-                setClickedProduct(b.productName);
-                dispatch(productSliceActions.newProduct(b.productName));
+                dispatch(
+                  productSliceActions.newProduct(
+                    products.filter((id) => id.productName == b.productName)[0]
+                  )
+                );
               }}
             >
               <p>{b.productName}</p>
