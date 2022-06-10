@@ -1,0 +1,43 @@
+h3 {
+  color: #c5c7ca;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+form {
+  input {
+    width: 100%;
+    font-family: inherit;
+    font-size: medium;
+    margin: 0.25rem 0;
+    // color: #aeb0b7;
+  }
+
+  button {
+    width: 100%;
+    background-color: #696969;
+    outline: none;
+    border: none;
+    color: whitesmoke;
+    font-family: inherit;
+    padding: 1rem 0.5rem;
+    font-weight: 500;
+    font-size: medium;
+  }
+}
+
+.close-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font: inherit;
+  background-color: white;
+  border: none;
+  outline: none;
+}
+
+.payment-mode-select,
+.payment-time-select {
+  display: flex;
+}

@@ -2,10 +2,10 @@ import React from "react";
 import PriceOption from "./PriceOption";
 import "./PricingStyles.scss";
 
-const PriceList = ({ data }) => {
+const PriceList = () => {
   return (
     <div className="price-list">
-      <PriceOption data={data} />
+      <PriceOption />
     </div>
   );
 };

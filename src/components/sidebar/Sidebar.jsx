@@ -40,7 +40,7 @@ const Sidebar = () => {
                 e.stopPropagation();
                 dispatch(
                   productSliceActions.newProduct(
-                    products.filter((id) => id.productName == b.productName)[0]
+                    products.filter((id) => id.id == b.id)[0]
                   )
                 );
               }}

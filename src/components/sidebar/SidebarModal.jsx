@@ -30,8 +30,6 @@ export default function SidebarModal({ open, onClose }) {
 
   const onSaveSubmission = (e) => {
     e.preventDefault();
-    console.log(`hihi`);
-    console.log(product + cost);
 
     uploadToDB();
     onClose();
@@ -39,11 +37,11 @@ export default function SidebarModal({ open, onClose }) {
 
   const uploadToDB = async () => {
     setIsLoading(true);
-    const { data, error } = await supabase.from("products-list").insert([
+    const { data, error } = await supabase.from("productsList").insert([
       {
         productName: product,
         manufacturingCost: cost,
-        priceList: [],
+        priceList: null,
       },
     ]);
 
