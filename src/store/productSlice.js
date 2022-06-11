@@ -14,8 +14,6 @@ const productSlice = createSlice({
     reducers: {
         newProduct(state, payload) {
             state.product = payload;
-
-            // console.log(state.product.payload);
         }
     }
 });

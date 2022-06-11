@@ -4,25 +4,23 @@ h3 {
   margin: 1rem 0;
 }
 
+.modal-content {
+  padding: 4rem;
+}
+
 form {
+  width: 100%;
+  margin-top: 2rem;
+
   input {
+    margin: 2rem;
     width: 100%;
     font-family: inherit;
     font-size: medium;
     margin: 0.25rem 0;
-    // color: #aeb0b7;
-  }
-
-  button {
-    width: 100%;
-    background-color: #696969;
+    margin: 2rem;
     outline: none;
     border: none;
-    color: whitesmoke;
-    font-family: inherit;
-    padding: 1rem 0.5rem;
-    font-weight: 500;
-    font-size: medium;
   }
 }
 
@@ -40,4 +38,53 @@ form {
 .payment-mode-select,
 .payment-time-select {
   display: flex;
+  // jce
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: large;
+
+  select {
+    width: 50%;
+    outline: none;
+    font-family: inherit;
+    border: none;
+    color: #2c2c2b;
+    background-color: #f4f4f4;
+    font-size: medium;
+  }
+
+  button {
+    cursor: pointer;
+    width: 100%;
+    background-color: #f4f4f4;
+    outline: none;
+    border: none;
+    color: whitesmoke;
+    font-family: inherit;
+    padding: 1rem 0.5rem;
+    font-weight: 500;
+    font-size: medium;
+    color: #2c2c2b;
+  }
+
+  // :focus,
+  // :hover,
+  // :active {
+  //   transition: 0.5s ease;
+  //   background-color: #696969;
+  //   color: #fff;
+  // }
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: #696969;
+  outline: none;
+  border: none;
+  color: whitesmoke;
+  font-family: inherit;
+  padding: 1rem 0.5rem;
+  font-weight: 500;
+  font-size: medium;
+  color: #fff;
 }

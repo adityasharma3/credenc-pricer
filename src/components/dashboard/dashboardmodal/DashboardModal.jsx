@@ -1,36 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import supabase from "../../../config/supabase-client";
 import "./modalstyle.scss";
 import { useSelector } from "react-redux";
+import "./modalstyle.scss";
 
 const DashboardModal = ({ open, onClose }) => {
-  //   const [prices, setPrices] = useState([]);
-  const [amount, setAmount] = useState("");
-  const [discount, setDiscount] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [paymentMode, setPaymentMode] = useState("Subscription");
+  const [paymentTime, setPaymentTime] = useState("Monthly");
 
   const product = useSelector((state) => state.product.product.payload);
-  console.log(product);
-
-  //   useEffect(() => {
-  //     const getData = async () => {
-  //       const { data, error } = await supabase
-  //         .from("productsList")
-  //         .eq("id", product.id);
-
-  //       setPrices(data);
-
-  //       if (error) {
-  //         alert(error.error_message);
-  //       }
-  //     };
-
-  //     getData();
-  //   }, [prices]);
 
   const onSaveSubmission = (e) => {
     e.preventDefault();
-
     insertToDB();
     onClose();
   };
@@ -40,7 +24,11 @@ const DashboardModal = ({ open, onClose }) => {
       .from("productsList")
       .update({
         priceList: [
-          { pricingModel: "Subscription", status: "active", amount: amount },
+          {
+            pricingModel: paymentMode,
+            status: "active",
+            amount: amount,
+          },
         ],
       })
       .eq("id", product.id);
@@ -57,7 +45,9 @@ const DashboardModal = ({ open, onClose }) => {
     backgroundColor: "#FFF",
     padding: "50px",
     zIndex: 1000,
+    width: "45%",
   };
+
   const OVERLAY_STYLES = {
     position: "fixed",
     top: 0,
@@ -74,14 +64,24 @@ const DashboardModal = ({ open, onClose }) => {
   return ReactDOM.createPortal(
     <>
       <div className="modal-overlay" style={OVERLAY_STYLES} />
-      <div className="modal-content" style={MODAL_STYLES}>
+      <div style={MODAL_STYLES}>
         <h3>Add new pricing model</h3>
 
-        <form action="">
+        <form>
           <div className="payment-mode-select">
-            <button>Subscription</button>
-            <button>Lumpsum</button>
-            <button>EMI</button>
+            <label>Select payment mode</label>
+            <select
+              name="payemnt-mode"
+              id="payment-mode"
+              value={paymentMode}
+              onChange={(e) => {
+                setPaymentMode(e.target.value);
+              }}
+            >
+              <option value="Subscription">Subscription</option>
+              <option value="Lumpsum">Lumpsum</option>
+              <option value="EMI">Emi</option>
+            </select>
           </div>
 
           <input
@@ -92,8 +92,18 @@ const DashboardModal = ({ open, onClose }) => {
           />
 
           <div className="payment-time-select">
-            <button>Monthly</button>
-            <button>Yearly</button>
+            <label htmlFor="">Select payment Duration</label>
+            <select
+              name="payemnt-duration"
+              id="payment-duration"
+              value={paymentTime}
+              onChange={(e) => {
+                setPaymentTime(e.target.value);
+              }}
+            >
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
+            </select>
           </div>
 
           <input
@@ -102,7 +112,11 @@ const DashboardModal = ({ open, onClose }) => {
             onChange={(e) => setDiscount(e.target.value)}
             placeholder="Discount(₹)"
           />
-          <button type="submit" onClick={onSaveSubmission}>
+          <button
+            className="submit-btn"
+            type="submit"
+            onClick={onSaveSubmission}
+          >
             Save
           </button>
         </form>
